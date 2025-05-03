@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="row m-2">
+      <div class="col-md-2"></div>
+      <div class="col-md-6">
+          <div class="d-flex flex-column  text-center">
+              <picture><img src="https://www.carrefour.es/nlogin/img/v3/otpMail.svg" style="width: 96px; height: 96px;"></picture>
+              <h4 class="text-title">{{ this.operacion() === 'Registro' ? 'Revista tu Email':'Confirma tu código' }}</h4>
+              @if(this.operacion()==='Registro'){
+                  <p>Para verificar tu cuenta introduce el código que te hemos<br> enviado a:</p>
+              }
+              @else {
+                  <p>Por tu seguridad, introduce el código que te hemos<br> enviado a:</p>
+              }
+              <p id="otpSended" class="font-weight-600">...email usuario...</p>
+          </div>
+      </div>
+  </div>
+
+  <div class="row mt-2">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 text-center">
+          <p>Código de verificación:*</p>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 d-flex flex-row justify-content-center">
+          @for(a of [1,2,3,4,5,6]; track $index ){
+                  <input type="tel"
+                          [id]="'code'+ a"
+                          [name]="'code'+ a"
+                          class="m-1 digito"
+                          aria-required="true"
+                          minlength="1"
+                          maxlength="1"
+                          placeholder=""
+                          aria-invalid="false"
+                          (change)="PushValue($event,a)">
+          }
+  </div>
+
+  <div class="row m-4">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 text-center">
+          <p style="background-color: #ECF3FD;"><i class="fa-solid fa-circle-info" style="color:#0970E6"></i>   Revisa tu carpeta de spam si el mensaje no <br> aparece en tu bandeja de entrada</p>
+      </div>
+  </div>
+
+  <div class="row m-2">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 d-flex flex-column justify-content-center">
+          <button type="button" class="botonReenviar">Reenviar codigo</button>
+          <button type="button" class="botonValidar"(click)="ValidarCodigo()" >Validar codigo</button>
+      </div>
+  </div>
+
+
+</div>

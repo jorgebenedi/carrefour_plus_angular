@@ -1,0 +1,54 @@
+<header class="header">
+  <a href="/">← Volver</a>
+  <img src="https://www.carrefour.es/myaccount/assets/images/logos/logo.svg" alt="Carrefour" />
+  <a href="#">🛈 Ayuda</a>
+</header>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 text-end start-saving-today">
+      <picture>
+        <img src="https://www.carrefour.es/nlogin/img/Club-Carrefour-Vienes.svg" alt="Club carrefour vienes" />
+      </picture>
+      <h1 class="mb-4">Comienza <br>a ahorrar hoy</h1>
+      <p class="lead">Únete y disfruta de las ventajas exclusivas <br>por ser socio de El Club Carrefour</p>
+      <a href="https://www.carrefour.es/clubcarrefour/">Quiero saber más</a>
+      <br>
+    </div>
+
+    <div class="col-2"></div>
+
+    <div class="col-md-4">
+      <h2 class="text-center mb-4">Tu cuenta</h2>
+      <span>Accede o <a href="/Cliente/Registro">crea una cuenta</a></span>
+
+      <!-- Formulario Reactivo -->
+      <form [formGroup]="loginForm" (ngSubmit)="ContinuarLogin()">
+        <div class="mb-3">
+          <input type="email" class="form-control" placeholder="Correo electrónico*" formControlName="email"  />
+          @if( loginForm.controls['email'].errors?.['required'] && loginForm.controls['email'].dirty ) { <span class="text-danger"><small>Email obligatorio</small></span>}
+          @if( loginForm.controls['email'].errors?.['emailInvalido'] && loginForm.controls['email'].dirty ) { <span class="text-danger"><small>Email no valido</small></span>}
+        </div>
+
+
+          <div class="mb-3">
+            <input type="password" class="form-control" placeholder="Password" formControlName="password"  />
+            @if( loginForm.controls['password'].errors?.['required'] && loginForm.controls['password'].dirty ) { <span class="text-danger"><small>Password obligatorio</small></span>}
+          </div>
+
+
+        <!-- Mensajes de error -->
+        <div *ngIf="mensajesError()">
+          <p class="text-danger">{{ mensajesError() }}</p>
+        </div>
+
+        <button
+          type="submit"
+          class="m-3 btn btn-primary"
+          [disabled]="!isFormValid">
+          Continuar
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

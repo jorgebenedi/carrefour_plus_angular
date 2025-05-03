@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+    <img [src]="this.producto()!.imagenes[0]" class="card-img-top" style="height: 170px; width: 170px;" alt="...">
+    <div class="card-body">
+      <h3 class="card-title">{{ this.producto()!.precio }} €</h3>
+      <h5 class="card-text text-body-secondary">{{ this.producto()!.precioKg }} €/Kg</h5>
+      <p class="card-text"><strong>{{ this.producto()!.nombre }}</strong></p>
+      <button type="button" class="btn btn-primary">Añadir</button>
+    </div>
+</div>
